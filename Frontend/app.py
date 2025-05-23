@@ -5,9 +5,9 @@ import time
 st.set_page_config(page_title="Multimodal Threat Detection", layout="centered")
 st.title("AI-Based Multimodal Threat Detection Platform")
 
-st.markdown("This system helps detect potential threats across different modalities like **URLs**, **Text**, **Images**, and **Audio** using AI.")
+st.markdown("This system helps detect potential threats across different modalities like **URLs**, **Mail IDs**, and **Images** using AI.")
 
-option = st.selectbox("Choose input type:", ["URL", "Text", "Image", "Audio"])
+option = st.selectbox("Choose input type:", ["URL", "Mail ID", "Image"])
 
 if option == "URL":
     url = st.text_input("Enter URL to scan:")
@@ -31,17 +31,16 @@ if option == "URL":
                     st.success(f"✅ {result['message']}")
                     st.balloons()
             except Exception as e:
-                st.error("❌ Failed to connect to backend.")
+                st.error("Failed to connect to backend.")
                 st.write(e)
 
-elif option == "Text":
-    text_input = st.text_area("Paste message or post to analyze:")
+elif option == "Mail ID":
+    mail_id = st.text_input("Enter email address to analyze:")
     
-    if st.button("Analyze Text"):
-        with st.spinner("Analyzing text for threats..."):
+    if st.button("Scan Mail ID"):
+        with st.spinner("Analyzing email for threats..."):
             time.sleep(2)
-        st.info("This is a placeholder. Text analysis module coming soon.")
-
+        st.info("This is a placeholder. Mail threat detection module coming soon.")
 
 elif option == "Image":
     image_file = st.file_uploader("Upload an image (e.g., meme, screenshot):", type=["jpg", "jpeg", "png"])
@@ -54,15 +53,3 @@ elif option == "Image":
             st.info("This is a placeholder. Image threat detection coming soon.")
         else:
             st.warning("Please upload an image.")
-
-elif option == "Audio":
-    audio_file = st.file_uploader("Upload an audio file (e.g., speech, alarm):", type=["wav", "mp3", "ogg"])
-    
-    if st.button("Scan Audio"):
-        if audio_file:
-            st.audio(audio_file)
-            with st.spinner("Analyzing audio..."):
-                time.sleep(2)
-            st.info("This is a placeholder. Audio analysis module coming soon.")
-        else:
-            st.warning("Please upload an audio file.")
