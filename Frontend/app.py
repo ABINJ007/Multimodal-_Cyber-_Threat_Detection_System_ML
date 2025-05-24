@@ -7,7 +7,7 @@ st.title("AI-Based Multimodal Threat Detection Platform")
 
 st.markdown("This system helps detect potential threats across different modalities like **URLs**, **Mail IDs**, and **Images** using AI.")
 
-option = st.selectbox("Choose input type:", ["URL", "Mail ID", "Image"])
+option = st.selectbox("Choose input type:", ["URL", "Image"])
 
 if option == "URL":
     url = st.text_input("Enter URL to scan:")
@@ -34,13 +34,6 @@ if option == "URL":
                 st.error("Failed to connect to backend.")
                 st.write(e)
 
-elif option == "Mail ID":
-    mail_id = st.text_input("Enter email address to analyze:")
-    
-    if st.button("Scan Mail ID"):
-        with st.spinner("Analyzing email for threats..."):
-            time.sleep(2)
-        st.info("This is a placeholder. Mail threat detection module coming soon.")
 
 elif option == "Image":
     image_file = st.file_uploader("Upload an image (e.g., meme, screenshot):", type=["jpg", "jpeg", "png"])
